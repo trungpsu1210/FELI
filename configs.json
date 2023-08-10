@@ -1,5 +1,5 @@
 {
-    "batch_size": 128,
+    "batch_size": 32,
     "patch_size": 256,
     "valid_mode": "test",
     "edge_decay": 0,
