@@ -127,7 +127,7 @@ if __name__ == '__main__':
 	val_dataset = PairLoader(dataset_dir, 'test', setting['valid_mode'], 
 							  setting['patch_size'])
 	val_loader = DataLoader(val_dataset,
-                            batch_size=int(setting['batch_size']/1),
+                            batch_size=int(setting['batch_size']/4),
                             num_workers=args.num_workers,
                             pin_memory=True)
 
