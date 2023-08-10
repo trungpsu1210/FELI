@@ -91,7 +91,7 @@ def test(test_loader, network, result_dir, lpips_metric):
 		print('Test: [{0}]\t'
 			  'PSNR: {psnr.val:.02f} ({psnr.avg:.02f})\t'
 			  'SSIM: {ssim.val:.03f} ({ssim.avg:.03f})\t'
-			  'SSIM: {lpips.val:.03f} ({lpips.avg:.03f})'
+			  'LPIPS: {lpips.val:.03f} ({lpips.avg:.03f})'
 			  .format(idx, psnr=PSNR, ssim=SSIM, lpips=LPIPS))
 
 		f_result.write('%s,%.02f,%.03f,%.03f\n'%(filename, psnr_val, ssim_val, lpips_val))
