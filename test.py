@@ -10,7 +10,6 @@ from collections import OrderedDict
 from utils import AverageMeter, write_img, chw_to_hwc
 from data_loader import PairLoader
 from models import *
-import time
 from torchmetrics.image.lpip import LearnedPerceptualImagePatchSimilarity
 
 
@@ -64,9 +63,7 @@ def test(test_loader, network, result_dir, lpips_metric):
 
 		with torch.no_grad():
 			
-			start_time = time.time()
 			output, R_low, R_high = network(input)
-			runtime.append(time.time() - start_time)
 			
 			output = output.clamp_(-1, 1)	
 	
@@ -98,8 +95,6 @@ def test(test_loader, network, result_dir, lpips_metric):
 
 		out_img = chw_to_hwc(output.detach().cpu().squeeze(0).numpy())
 		write_img(os.path.join(result_dir, 'imgs', filename), out_img)
-
-	print(sum(runtime)/len(runtime))
 
 	f_result.close()
 
