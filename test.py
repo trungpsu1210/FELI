@@ -26,13 +26,16 @@ parser.add_argument('--exp', default='lowlight_blur', type=str, help='experiment
 args = parser.parse_args()
 
 
+
 def single(save_dir):
 	state_dict = torch.load(save_dir)['state_dict']
-	print(torch.load(save_dir)['epoch'])
+	
+	moduleA_state_dict = {k: v for k, v in state_dict.items() if k.startswith('module.LRNet.main_LRNet')}
+		
 	new_state_dict = OrderedDict()
 
-	for k, v in state_dict.items():
-		name = k[7:]
+	for k, v in moduleA_state_dict.items():
+		name=k[24:]
 		new_state_dict[name] = v
 
 	return new_state_dict
@@ -67,8 +70,6 @@ def test(test_loader, network, result_dir, lpips_metric):
 			
 			output = output.clamp_(-1, 1)	
 	
-
-			output = network(input).clamp_(-1, 1)
 			# [-1, 1] to [0, 1]
 			output = output * 0.5 + 0.5
 			target = target * 0.5 + 0.5
@@ -76,7 +77,7 @@ def test(test_loader, network, result_dir, lpips_metric):
 			psnr_val = 10 * torch.log10(1 / F.mse_loss(output, target)).item()
 
 			_, _, H, W = output.size()
-			down_ratio = max(1, round(min(H, W) / 256))		# Zhou Wang
+			down_ratio = max(1, round(min(H, W) / 256))		
 			ssim_val = ssim(F.adaptive_avg_pool2d(output, (int(H / down_ratio), int(W / down_ratio))), 
 							F.adaptive_avg_pool2d(target, (int(H / down_ratio), int(W / down_ratio))), 
 							data_range=1, size_average=False).item()
@@ -107,12 +108,12 @@ def test(test_loader, network, result_dir, lpips_metric):
 
 
 if __name__ == '__main__':
-	network = eval(args.model.replace('-', '_'))()
+	network = eval(args.model_test)()
 	network.cuda()
-	saved_model_dir = os.path.join(args.save_dir, args.exp, args.model+'.pth')
+	saved_model_dir = os.path.join(args.save_dir, args.exp, args.model_train+'.pth')
 
 	if os.path.exists(saved_model_dir):
-		print('==> Start testing, current model name: ' + args.model)
+		print('==> Start testing, current model name: ' + args.model_test)
 		network.load_state_dict(single(saved_model_dir))
 	else:
 		print('==> No existing trained model!')
@@ -127,5 +128,5 @@ if __name__ == '__main__':
 	
 	lpips_metric = LearnedPerceptualImagePatchSimilarity(net_type='vgg').cuda()
 
-	result_dir = os.path.join(args.result_dir, args.dataset, args.model)
+	result_dir = os.path.join(args.result_dir, args.dataset, args.model_train)
 	test(test_loader, network, result_dir, lpips_metric)
