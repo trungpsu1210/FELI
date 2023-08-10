@@ -38,7 +38,6 @@ def single(save_dir):
 	new_state_dict = OrderedDict()
 
 	for k, v in moduleA_state_dict.items():
-		# name = k[7:]
 		name=k[24:]
 		new_state_dict[name] = v
 
