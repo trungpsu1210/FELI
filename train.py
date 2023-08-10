@@ -11,7 +11,7 @@ from tqdm import tqdm
 from utils import AverageMeter
 from data_loader import PairLoader
 from models import *
-from models.CR import *
+from models.CCR import *
 
 
 parser = argparse.ArgumentParser()
