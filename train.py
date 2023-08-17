@@ -99,7 +99,7 @@ if __name__ == '__main__':
 
 	criterion = []
 	criterion.append(nn.L1Loss().cuda())
-	criterion.append(nn.SmoothL1Loss().cuda())
+	criterion.append(nn.L1Loss().cuda())
 	criterion.append(ContrastLoss(ablation=False))
 
 	if setting['optimizer'] == 'adam':
