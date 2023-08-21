@@ -1,6 +1,6 @@
-# Fast and Efficient Deep Neural Nerwork for Joint Low-light Enhancement and Image Restoration - (FELI) #
+# Fast and Physically Enriched Deep Network for Joint Low-light Enhancement and Image Restoration - (FELI) #
 
-This code originally is proposed for FELI for single image deblurring in low-light condition. 
+This code originally is proposed for FELI for single image deblurring in low-light conditions. 
 
 ## Structure of the code ##
 
