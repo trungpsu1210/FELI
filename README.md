@@ -2,6 +2,10 @@
 
 This code originally is proposed for FELI for single image deblurring in low-light conditions. 
 
+## Overview of FELI ##
+
+![alt text](https://github.com/trungpsu1210/FELI/blob/main/Model.jpg)
+
 ## Structure of the code ##
 
 1. models: Folders for proposed networks (FELI)
