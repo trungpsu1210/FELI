@@ -28,3 +28,16 @@ Cudatoolkit=11.3
 Deep learning libraries/frameworks: OpenCV, TensorBoard, timm, torchvision, pytorch_msssim...
 
 To run the code, make sure all the files are in the corresponding folders and install the requirements.txt
+
+## Citation ##
+
+If you find this method useful for your work/research, please cite our paper:
+
+```
+@inproceedings{icassp2024TrungpsuFELI,
+  author={Hoang, Trung and McElvain, Jon and Monga, Vishal},
+  booktitle={2024 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  title={Fast and Physically Enriched Deep Network for Joint Low-light Enhancement and Image Deblurring}, 
+  year={2024}
+  }
+```
