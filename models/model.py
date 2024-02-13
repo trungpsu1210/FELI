@@ -440,20 +440,20 @@ class LRNet_main(nn.Module):
 
 		return output, R_low, R_high, I_high_3, I_delta_3, lle_gt, I_re
 
-def trainFELI_t():
-	return LRNet_main(depths=[1, 1, 1, 2, 1, 1, 1])
-
 def trainFELI_s():
-	return LRNet_main(depths=[2, 2, 2, 4, 2, 2, 2])
+	return LRNet_main(depths=[1, 1, 1, 2, 1, 1, 1])
 
 def trainFELI_b():
 	return LRNet_main(depths=[3, 3, 3, 6, 3, 3, 3])
 
-def testFELI_t():
-	return gUNet(kernel_size=5, base_dim=24, depths=[1, 1, 1, 2, 1, 1, 1], conv_layer=ConvLayer, norm_layer=nn.BatchNorm2d, gate_act=nn.Sigmoid, fusion_layer=SKFusion)
+def trainFELI_l():
+	return LRNet_main(depths=[9, 9, 9, 18, 9, 9, 9])
 
 def testFELI_s():
-	return gUNet(kernel_size=5, base_dim=24, depths=[2, 2, 2, 4, 2, 2, 2], conv_layer=ConvLayer, norm_layer=nn.BatchNorm2d, gate_act=nn.Sigmoid, fusion_layer=SKFusion)
+	return gUNet(kernel_size=5, base_dim=24, depths=[1, 1, 1, 2, 1, 1, 1], conv_layer=ConvLayer, norm_layer=nn.BatchNorm2d, gate_act=nn.Sigmoid, fusion_layer=SKFusion)
 
 def testFELI_b():
 	return gUNet(kernel_size=5, base_dim=24, depths=[3, 3, 3, 6, 3, 3, 3], conv_layer=ConvLayer, norm_layer=nn.BatchNorm2d, gate_act=nn.Sigmoid, fusion_layer=SKFusion)
+
+def testFELI_l():
+	return gUNet(kernel_size=5, base_dim=24, depths=[9, 9, 9, 18, 9, 9, 9], conv_layer=ConvLayer, norm_layer=nn.BatchNorm2d, gate_act=nn.Sigmoid, fusion_layer=SKFusion)
