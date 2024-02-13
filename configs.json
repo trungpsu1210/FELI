@@ -6,7 +6,7 @@
     "only_h_flip": false,
     "optimizer": "adamw",
     "lr": 5e-4,
-    "step_T": 128,
-    "epochs": 888,
+    "step_T": 135,
+    "epochs": 1999,
     "eval_freq": 1
 }
