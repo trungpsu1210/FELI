@@ -443,17 +443,11 @@ class LRNet_main(nn.Module):
 def trainFELI_t():
 	return LRNet_main(depths=[1, 1, 1, 2, 1, 1, 1])
 
-def trainFELI_s():
-	return LRNet_main(depths=[2, 2, 2, 4, 2, 2, 2])
-
 def trainFELI_b():
 	return LRNet_main(depths=[3, 3, 3, 6, 3, 3, 3])
 
-def testFELI_s():
+def testFELI_t():
 	return gUNet(kernel_size=5, base_dim=24, depths=[1, 1, 1, 2, 1, 1, 1], conv_layer=ConvLayer, norm_layer=nn.BatchNorm2d, gate_act=nn.Sigmoid, fusion_layer=SKFusion)
 
 def testFELI_b():
-	return gUNet(kernel_size=5, base_dim=24, depths=[2, 2, 2, 4, 2, 2, 2], conv_layer=ConvLayer, norm_layer=nn.BatchNorm2d, gate_act=nn.Sigmoid, fusion_layer=SKFusion)
-
-def testFELI_l():
 	return gUNet(kernel_size=5, base_dim=24, depths=[3, 3, 3, 6, 3, 3, 3], conv_layer=ConvLayer, norm_layer=nn.BatchNorm2d, gate_act=nn.Sigmoid, fusion_layer=SKFusion)
